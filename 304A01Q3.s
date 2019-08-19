@@ -3,8 +3,8 @@
 	addi $t1, $0, 0
 	add $t2, $0, $s0
 	add $t3, $0, $s1
-	addi $t5, $0, 4
-	addi $t6, $0, 9
+	addi $t5, $0, 5
+	addi $t6, $0, 10
 	mtc1 $0, $f0
 	cvt.d.w $f0, $f0	#initialize $f0 as 0.0
 
@@ -22,12 +22,12 @@ L1:
 	addi $t1, $t1, 1
 	addi $t3, $t3, 4
 	addi $t2, $t2, 8
-	blt $t1, $t5, L1
+	bne $t1, $t5, L1
 
 	add $t3, $0, $s1
 	addi $t1, $0, 0
 	addi $t0, $t0, 1
-	blt $t0, $t6, L1
+	bne $t0, $t6, L1
 
 
 	#store result into $s2
