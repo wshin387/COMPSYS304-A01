@@ -23,7 +23,7 @@ func1:
 
 L1:	
 	lbu $t1, 0($t0)
-	beq $t1, $0, L3
+	beq $t1, $0, L3   #if null char
 
 	#check if char is a digit: ASCII code 0x30 to 0x3A
 	slti $t2, $t1, 0x30
@@ -35,6 +35,7 @@ L1:
 	addi $v0, $v0, 1
 
 L2:
+	#move to next char in string
 	addi $t0, $t0, 1
 	j L1
 

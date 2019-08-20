@@ -8,6 +8,7 @@ L1:
 	lb $t5, 3($t0)
 
 	# Assume that lb loads the byte into LEAST SIGNIFICANT byte
+	# Shift bytes into correct positions
 	sll $t3, $t3, 8
 	sll $t4, $t4, 16
 	sll $t5, $t5, 24
@@ -25,7 +26,7 @@ L1:
 	addi $t0, $t0, 4
 	addi $t6, $t6, -1
 	addi $t1, $t1, 4
-	bne $t6, $0, L1
+	bne $t6, $0, L1	#check loop condition
 
 
 

@@ -53,7 +53,8 @@ L1:
 
 
 fib:
-
+	
+	#if 2 < input
 	bgt $a1, 2, fib_rec
 
 	#if 0 < input <= 2
@@ -64,26 +65,31 @@ fib:
 	jr $ra
 
 base_case:
+	#if n==1 or n==2, return 1
 	addi $v1, $0, 1
 	jr $ra
 
 fib_rec:
+	# return fib(n-1) + fib(n-2)
+
+	#set up stack frame
 	sub $sp, $sp, 12
 	sw $ra, 0($sp)
 
 	sw $a1, 4($sp)
 	addi $a1, $a1, -1
-	jal fib
+	jal fib  #fib(n-1)
 
 	lw $a1, 4($sp)
 	sw $v1, 8($sp)
 
 	add $a1, $a1, -2
-	jal fib
+	jal fib #fib(n-2)
 
 	lw $t0, 8($sp)
 	add $v1, $t0, $v1
 
+	#restore stack frame
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
 
