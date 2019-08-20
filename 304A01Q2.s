@@ -1,5 +1,5 @@
 	.data
-str:.ascii "Numbers are @#$%^&*!@#$%^&*();920, 25, and 123 for this9"
+str:.ascii "Numbers are 0, 25 and 123 for this."
 	
 	.text
 	.globl main
