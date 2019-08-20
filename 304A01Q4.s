@@ -5,21 +5,32 @@ str:.asciiz ","
 	.globl main
 
 main:
+	addi $t1, $0, 0
+	addi $t4, $0, 1
+	la $a2, str
+
+	#prompt user for input
 	li $v0, 4
 	la $a0, input
 	syscall
 
 	li $v0, 5
 	syscall
-	# addi $t2, $0, 10 #set input n here
 
-	la $a2, str
+	#if less than 1, need to print 0
+	blt $v0, $t4, L1
 
-
+	#need to fib sequence from 1
 	addi $t1, $0, 1
+
+	#if 1, need to start from 1 to n
+	beq $v0, $t4, L1
+
+	#if greater than one, need to start from 1 to n+1
 	addi $t2, $v0, 1
 
 L1:
+	#set up loop variable
 	move $a1, $t1
 	jal fib
 
@@ -27,6 +38,7 @@ L1:
 	add $a0, $0, $v1
 	addi $v0, $0, 1
 	syscall
+
 	#print ','
 	addi $v0, $0, 4
 	la $a0, str
@@ -43,7 +55,11 @@ L1:
 fib:
 
 	bgt $a1, 2, fib_rec
+
+	#if 0 < input <= 2
 	bgt $a1, 0, base_case
+
+	#else, input <=0
 	move $v1, $0
 	jr $ra
 
